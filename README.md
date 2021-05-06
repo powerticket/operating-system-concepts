@@ -98,3 +98,27 @@ It guarantee only that a critical process is preferred to noncritical one.
 #### Hard Realtime
 
 A task must be serviced by its deadline.
+
+
+
+## Ch.6 Synchronization Tools
+
+### Race condition
+
+#### The Critical Section Problem
+
+##### Sections of codes
+
+- Entry section
+- Critical section
+- Exit section
+- Remainder section
+
+
+
+##### Three requirements for the solution
+
+- Mutual exclusion
+- Progress(avoid deadlock)
+- Bounded waiting(avoid starvation)
+
