@@ -122,3 +122,113 @@ A task must be serviced by its deadline.
 - Progress(avoid deadlock)
 - Bounded waiting(avoid starvation)
 
+
+
+### Peterson's solution
+
+### Atomic variable
+
+### Mutex(Mutual Exclusion) Lock
+
+The simplest tools for synchronization
+
+- Protect critical section and prevent race condition.
+
+- A process must acquire the lock before entering a critical section.
+
+- Releases the lock when  it exits the critical section.
+
+
+
+Two functions and one variable for the Mutext Lock
+
+- `acqure()`, `release()`
+- `available`: Boolean
+
+```c
+acqure() {
+    while (!available); // busy wait
+    available = false;
+}
+
+release() {
+    available = true;
+}
+```
+
+
+
+#### Spinlock
+
+The type of metex lock using the method of busy waiting
+
+- In certain circumstances **on multicore systems**, spinlocks are the preferable choice for locking.
+
+- One thread can spin on one processing core while another thread performs its critical section on another core.
+
+
+
+#### Implementation
+
+```c
+void *counter(void * param) {
+    for (int k = 0; k < 10000; k++) {
+        // entry section(acquire a lock)
+        pthread_mutex_lock(&mutex);
+        
+        // critical section
+        sum++;
+        
+        // exit section(release the lock)
+        pthread_mutex_unlock(&mutex);
+        
+        //remainder section
+    }
+    pthread_exit(0);
+}
+```
+
+
+
+### Semaphore
+
+More robust, convenient, and effective tool.
+
+Two functions and one variable for the semaphore
+
+- `wait()`(`P()`), `signal()`(`V()`)
+- `S`: Integer
+
+```c
+wait(S) {
+    while (s <= 0); // busy wait
+	S--;
+}
+
+signal(S) {
+    S++;
+}
+```
+
+
+
+#### Binary Semephore
+
+- range only between 0 and 1 - similar to mutex lock.
+
+#### Counting Semaphore
+
+- range over an unrestricted domain.
+- can be used to resources with a finite number of instances.
+
+
+
+### Monitor
+
+Overcomes the demerits of metex and semaphore.
+
+
+
+### Liveness
+
+Ensures for processes to make progress.

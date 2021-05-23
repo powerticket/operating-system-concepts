@@ -6,7 +6,7 @@ public class RaceCondition2 {
         Thread t2 = new Thread(run2);
         t1.start(); t2.start();
         t1.join(); t2.join();
-        System.out.println("Result: " + RunnableTwo.count);
+        System.out.println("Result: " + RunnableTwo.count  );
     }
 }
 
